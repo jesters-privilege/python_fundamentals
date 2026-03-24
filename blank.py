@@ -1,153 +1,5 @@
 ### ME LEARNING ###
 
-def hello():
-     #Prints three greetings
-        print('Good morning!')
-        print('Good afternoon!')
-        print('Good evening!')
-
-hello()
-hello()
-print('ONE MORE TIME!')
-hello()
-
-def say_hello_to(name):
-        #Prints three greetings to the name provided
-        print('Good morning, ' + name)
-        print('Good afternoon, ' + name)
-        print('Good evening, ' + name)
-
-say_hello_to('Alice')
-say_hello_to('Bob')
-
-import random
-
-def get_answer(answer_number):
-        # Returns a fortune answer based on what int answer_number is 1 to 9
-        if answer_number == 1:
-                return 'It is certain'
-        elif answer_number == 2:
-                return 'It is decidedly so'
-        elif answer_number == 3:
-                return 'Yes'
-        elif answer_number == 4:
-                return 'Reply hazy try again'
-        elif answer_number == 5:
-                return 'Ask again later'
-        elif answer_number == 6:
-                return 'Concentrate and ask again'
-        elif answer_number == 7:
-                return 'My reply is no'
-        elif answer_number == 8:
-                return 'Outlook not so good'
-        elif answer_number == 9:
-                return 'Very doubtful'
-        
-print('Ask a yes or no question:')
-input('>')
-print(get_answer(random.randint(1,9)))
-
-for i in range(100): #Perform 100 coin flips
-        if random.randint(0,1) == 0:
-                print('H', end=' ')
-        else:
-                print('T', end=' ')
-print() #Print one newline at the end
-
-### CALL STACK ###
-def a():
-        print('a() starts')
-        b()
-        d()
-        print('a() returns')
-
-def b():
-        print('b() starts')
-        c()
-        print('b() returns')
-
-def c():
-        print('c() starts')
-        print('c() returns')
-
-def d():
-        print('d() starts')
-        print('d() returns')
-
-a()
-
-def spam():
-        global eggs
-        eggs = 'spam' # This is the global variable
-
-def bacon():
-        eggs = 'bacon' # This is a local variable
-
-def ham():
-        print(eggs) # This is the global variable
-
-eggs = 'global' # This is the global variable
-spam()
-print(eggs)
-
-### EXCEPTION HANDLING ###
-
-def spam(divide_by):
-        try:
-                # Any code in this block that causes ZeroDivisionError won't crash the program:
-                return 42 / divide_by
-        except ZeroDivisionError:
-                # IF ZeroDivisionError happened, the code in this block runs:
-                print('Error: Invalid argument')
-
-print(spam(2))
-print(spam(12))
-print(spam(0))
-print(spam(1))
-
-### SMALL PROGRAM - ZIGZAG###
-import time, sys
-indent = 0 # How many spaces to indent
-indent_increasing = True # Whether the indentation is increasing or not
-
-try:
-        while True: # The main program loop
-                print(' ' * indent, end='')
-                print('*********')
-                time.sleep(0.1) # Pause for 1/10th of a second
-
-                if indent_increasing:
-                    # Increase the number of spaces:
-                    indent = indent + 1
-                    if indent == 20:
-                            # Change directions
-                            indent_increasing = False
-
-                else:
-                    # Decrease the number of spaces:
-                    indent = indent - 1
-                    if indent == 0:
-                            # Change direction
-                            indent_increasing = True
-except KeyboardInterrupt:
-        sys.exit()
-
-### SMALL PROGRAM - SPIKE ###
-import time, sys
-
-try:
-        while True:
-                for i in range(1,9):
-                        print('-' * (i * i))
-                        time.sleep(0.1)
-                
-                for i in range(7, 1, -1):
-                        print('-' * (i * i))
-                        time.sleep(0.1)
-
-except KeyboardInterrupt:
-        sys.exit()
-
 ### WHILE LOOPS ###
 while True:
         print('Who are you?')
@@ -290,51 +142,6 @@ fortune = get_answer(r)
 print(fortune)
 
 ### DEBUGGING ###
-def box_print(symbol, width, height):
-    if len(symbol) != 1:
-      raise Exception('Symbol must be a single character string.')
-    if width <= 2:
-      raise Exception('Width must be greater than 2.')
-    if height <= 2:
-      raise Exception('Height must be greater than 2.')
-
-    print(symbol * width)
-    for i in range(height - 2):
-        print(symbol + (' ' * (width - 2)) + symbol)
-    print(symbol * width)
-
-try:
-    box_print('*', 4, 4)
-    box_print('O', 20, 5)
-    box_print('x', 1, 3)
-    box_print('ZZ', 3, 3)
-except Exception as err:
-    print('An exception happened: ' + str(err))
-try:
-    box_print('ZZ', 3, 3)
-except Exception as err:
-    print('An exception happened: ' + str(err))
-
-ages = [26, 57, 92, 54, 22, 15, 17, 80, 47, 73]
-ages.reverse() # causes error
-ages
-assert ages [0] <= ages [-1] # Assert that the first age is the last age
-
-import logging
-logging.basicConfig(filename = 'myProgramLog.txt', level=logging.DEBUG, format='%(asctime)s -  %(levelname)s -  %(message)s')
-logging.debug('Start of program')
-
-def factorial(n):
-    logging.debug('Start of factorial(' + str(n) + ')')
-    total = 1
-    for i in range(1, n + 1):
-        total *= i
-        logging.debug('i is ' + str(i) + ', total is ' + str(total))
-    logging.debug('End of factorial(' + str(n) + ')')
-    return total
-
-print(factorial(5))
-logging.debug('End of program')
 
 ### LOGGING LEVELS ###
 # DEBUG - logging.debug(): the lowest level, small details. Important for messages when diagnosing problems.
@@ -353,34 +160,6 @@ logging.critical('The program is unable to recover!')
 logging.disable(logging.CRITICAL)
 logging.critical('Critical error! Critical error!')
 logging.error('Error! Error!')
-
-### DEBUGGING AN ADDITION PROGRAM ###
-print('Enter the first number to add:')
-first = input()
-print('Enter the second number to add:')
-second = input()
-print('Enter the third number to add:')
-third = input()
-print('The sum is ' + first + second + third)
-
-### PRACTICE PROGRAM - DEBUGGING COIN TOSS ###
-import random, logging
-
-guess = ''
-while guess not in ('heads', 'tails'):
-    print('Guess the coin toss! Enter heads or tails:')
-    guess = input()
-    toss = random.randint(0, 1)  # 0 is tails, 1 is heads
-    toss_str = 'heads' if toss == 1 else 'tails' # Convert toss int to str
-    if toss_str == guess:
-        print('You got it!')
-    else:
-        print('Nope! Guess again!')
-        guess = input()
-        if toss_str == guess:
-            print('You got it!')
-        else:
-            print('Nope. You are reallheay bad at this game.')
 
 ### LISTS ###
 spam = ['cat', 'bat', 'rat', 'elephant']
@@ -433,37 +212,10 @@ spam
 del spam[2]
 spam
 
-cat_names = []
-while True:
-       print('Enter the name of cat ' + str(len(cat_names) + 1) +
-             ' (Or enter nothing to stop.):')
-       name = input()
-       if name == '':
-              break
-       cat_names = cat_names + [name] # List concatenation
-print('The cat names are:')
-for name in cat_names:
-       print(' ' + name)
-
 ### FOR LOOPS AND LISTS ###
 supplies = ['pens', 'staplers', 'flamethrowers', 'binders']
 for i in range(len(supplies)):
        print('Index ' + str(i) + ' in supplies is: ' + supplies[i])
-
-### IN AND NOT IN OPERATORS ###
-'howdy' in ['hello', 'hi', 'howdy', 'heyas']
-spam = ['hello', 'hi', 'howdy', 'heyas']
-'cat' in spam
-'howdy' not in spam
-'cat' not in spam
-
-my_pets = ['Zophie' , 'Pooka', 'Fat-tail']
-print('Enter a pet name:')
-name = input()
-if name not in my_pets:
-       print('I do not have a pet named ' + name)
-else:
-       print(name + 'is my pet.')
 
 ### TUPLE UNPACKING ###
 cat = ['fat', 'gray', 'loud']
@@ -525,21 +277,6 @@ if len(spam) > 0 and spam[0] == 'cat':
 else:
        print('The first item is not a cat')
 
-### SHORT PROGRAM - MAGIC 8 BALL W/ LIST ###
-import random
-messages = ['It is certain,'
-        'It is decidedly so',
-        'Yes definitely',
-        'Reply hazy try again',
-        'Ask again later',
-        'Concentrate and ask again',
-        'My reply is no ',
-        'Outlook not so good',
-        'Very doubtful']
-print('Ask a yes or no question:')
-input('>')
-print(messages[random.randint(0, len(messages) - 1)])
-
 ### SEQUENCE DATA TYPES ###
 name = 'Zophie'
 name[0]
@@ -596,14 +333,6 @@ eggs    # The eggs variable refers to the same list
 # VARIABLES NEVER CONTAIN VALUES. THEY CONTAIN ONLY REFERENCES TO VALUES
 # THE '=' ASSIGNMENT OPERATOR COPIES ONLY REFERENCES, NEVER VALUES
 
-### ARGUMENTS ###
-def eggs(some_parameter):
-       some_parameter.append('Hello')
-
-spam = [1,2,3]
-eggs(spam)
-print(spam)
-
 ### COPY() AND DEEPCOPY() FUNCTIONS ###
 import copy
 spam = ['A', 'B', 'C']
@@ -611,34 +340,3 @@ cheese = copy.copy(spam)        # Cretes a duplicate copy of the list
 cheese[1] = 42  # Changes cheese
 spam    # Spam variable is unchanged
 cheese  # Cheese variable is changed
-
-### SHORT PROGRAM - MATRIX SCREENSAVER ###
-import random, sys, time
-
-WIDTH = 70  # The number of columns
-
-try:
-    # For each column, when the counter is 0, no stream is shown.
-    # Otherwise, it acts as a counter for how many times a 1 or 0
-    # should be displayed in that column.
-    columns = [0] * WIDTH
-    while True:
-        # Loop over each column:
-        for i in range(WIDTH):
-            if random.random() < 0.02:
-                # Restart a stream counter on this column.
-                # The stream length is between 4 and 14 characters long.
-                columns[i] = random.randint(4, 14)
-
-            # Print a character in this column:
-            if columns[i] == 0:
-                # Change this ' '' to '.' to see the empty spaces:
-                print(' ', end='')
-            else:
-                # Print a 0 or 1:
-                print(random.choice([0, 1]), end='')
-                columns[i] -= 1  # Decrement the counter for this column.
-        print()  # Print a newline at the end of the row of columns.
-        time.sleep(0.1)  # Each row pauses for one tenth of a second.
-except KeyboardInterrupt:
-    sys.exit()  # When Ctrl-C is pressed, end the program.
