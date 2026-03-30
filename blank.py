@@ -340,3 +340,4 @@ cheese = copy.copy(spam)        # Cretes a duplicate copy of the list
 cheese[1] = 42  # Changes cheese
 spam    # Spam variable is unchanged
 cheese  # Cheese variable is changed
+
